@@ -70,6 +70,7 @@
             this.Btn_Connecter_Robot = new System.Windows.Forms.Button();
             this.pbx_Halt = new System.Windows.Forms.PictureBox();
             this.BTN_Connecter_BD = new System.Windows.Forms.Button();
+            this.LB_Bras_Robot_Arreter = new System.Windows.Forms.Label();
             this.PNL_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBX_Logo)).BeginInit();
             this.GBX_Etat_general.SuspendLayout();
@@ -385,12 +386,19 @@
             this.BTN_Connecter_BD.UseVisualStyleBackColor = false;
             this.BTN_Connecter_BD.Click += new System.EventHandler(this.BTN_Connecter_BD_Click);
             // 
+            // LB_Bras_Robot_Arreter
+            // 
+            resources.ApplyResources(this.LB_Bras_Robot_Arreter, "LB_Bras_Robot_Arreter");
+            this.LB_Bras_Robot_Arreter.ForeColor = System.Drawing.Color.Red;
+            this.LB_Bras_Robot_Arreter.Name = "LB_Bras_Robot_Arreter";
+            // 
             // PageAccueil
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ControlBox = false;
+            this.Controls.Add(this.LB_Bras_Robot_Arreter);
             this.Controls.Add(this.BTN_Connecter_BD);
             this.Controls.Add(this.Btn_Connecter_Robot);
             this.Controls.Add(this.PNL_Accueil);
@@ -467,5 +475,6 @@
         private System.Windows.Forms.TextBox TBX_Username;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LB_Bras_Robot_Arreter;
     }
 }

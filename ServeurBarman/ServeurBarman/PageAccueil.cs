@@ -15,7 +15,7 @@ using Bras_Robot;
 
 namespace ServeurBarman
 {
-  
+
     public partial class PageAccueil : MetroFramework.Forms.MetroForm
     {
         bool estConnecté { get; set; }
@@ -25,19 +25,15 @@ namespace ServeurBarman
         DataBase baseDeDonnees;
         Commande service;
         string commandePrecedente;
-        int item1, item2;
+        int NumBouteille, ShooterOuNon;
         bool enService;
-
 
         public PageAccueil()
         {
             InitializeComponent();
-
         }
         public void UpdateUIBaseDonné()
         {
-            BTN_Setting.Enabled = true;
-            BTN_Pause_Commande.Enabled = false;
             LB_Etat_BD.Text = baseDeDonnees.BaseDonnées.State.ToString();
             LB_Etat_BD.ForeColor = Color.Green;
             LB_Nb_Verre_Shooter.Text = baseDeDonnees.NombreDeShooter();
@@ -70,32 +66,31 @@ namespace ServeurBarman
             DialogResult dlg_result = dlg.ShowDialog();
         }
 
-    
         private void PageAccueil_Load(object sender, EventArgs e)
         {
-            Etat_List_Attente();
+            Btn_Connecter_Robot.Enabled = false;
+            LB_Bras_Robot_Arreter.Visible = false;
+            btn_Servir.Enabled = false;
+            BTN_Pause_Commande.Enabled = false;
+            pbx_Halt.Enabled = false;
         }
-
 
         private void Init_PageAcceuil()
         {
-            
             UpdateUIBaseDonné();
             UpdateUIEtatGeneral();
             Task.Run(() =>
             {
                 while (true)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                     Show_WaitingDrinksList();
-                    Thread.Sleep(1000);
+
                 }
             });
             Task.Run(() => baseDeDonnees.ListeCommande());
-
         }
 
-        // AFFICHE DANS L'INTERFACE LA LISTE DES COMMANDES EN ATTENTE
         private void Show_WaitingDrinksList()
         {
             if (numcommande.Count != baseDeDonnees.ListeCommande().Count)
@@ -104,13 +99,14 @@ namespace ServeurBarman
 
                 foreach (var e in numcommande)
                     Invoke((MethodInvoker)(() => LBX_WaitingList.Items.Add(e.Item1)));
+                Invoke((MethodInvoker)delegate
+                {
+                    Update_Etat_Btn_Suppression();
+                });
             }
+
         }
 
-        /// <summary>
-        /// Ici, on charge toutes les commandes disponible dans la table commande de la bd,
-        /// puis on détermine le nombre de clients.
-        /// </summary>
         private void Refresh_WaitingList()
         {
             Invoke((MethodInvoker)delegate
@@ -121,90 +117,24 @@ namespace ServeurBarman
             numcommande = baseDeDonnees.ListeCommande();
             if (numcommande.Count != 0)
             {
-                item1 = numcommande[0].Item1;
-                item2 = numcommande[0].Item2;
+                NumBouteille = numcommande[0].Item1;
+                ShooterOuNon = numcommande[0].Item2;
             }
 
         }
-        private void Etat_List_Attente()
+
+        private void Btn_pour_servir()
         {
-            if (LBX_WaitingList.Items.Count.Equals(0))
+            if (estConnecté)
             {
-                BTN_Supprimer_Cmd.Enabled = false;
-                Btn_ResetCommande.Enabled = false;
-                btn_Servir.Enabled = false;
-                enService = false;
-            }
-            else
-            {
-                BTN_Supprimer_Cmd.Enabled = true;
-                Btn_ResetCommande.Enabled = true;
                 btn_Servir.Enabled = true;
-                enService = true;
+                BTN_Pause_Commande.Enabled = true;
             }
         }
-        /// <summary>
-        /// Cette méthode permet de servir le client sur la base des commandes disponible 
-        /// dans la liste d'attante tout en distinguant le type de commande
-        /// </summary>
+
         private void ServirClient()
         {
-
-            Task.Run(() =>
-            {
-            while (enService)
-            {
-                if (baseDeDonnees.Ingredient_Est_Disponible(item1))
-                {
-                    if (item2 == 0)
-                    {
-                        if (Int32.Parse(baseDeDonnees.NombreDeVerreRouge()) != 0)
-                        {
-                            service = new Commande(item2);
-                            var p = service.TypeReel();
-                            if (robot.EnMarche())
-                            {
-                                List<(Position, int)> ing = p.Ingredients(item1);
-
-                                if (robot.MakeDrink(ing.ToList()))
-                                {
-                                    baseDeDonnees.SupprimerCommande(item1);
-                                    lb_CommandeEnCours.Text = item1.ToString();
-
-                                    if (commandePrecedente != null && commandePrecedente != lb_CommandeEnCours.Text)
-                                    lb_CommandeEnCours.Text = "Commande numéro " + commandePrecedente + " terminée!";
-
-                                    commandePrecedente = lb_CommandeEnCours.Text.ToString();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            LBX_Activities.Items.Add("0 verres rouge disponible");
-                        }
-                    }
-                    else
-                    {
-                        /*
-                         * IL S'AGIT D'UN SHOOTER
-                         */
-                        service = new Commande(item2);
-                        var p = service.TypeReel();
-
-                        baseDeDonnees.SupprimerCommande(item1);
-                        if (commandePrecedente != null && commandePrecedente != lb_CommandeEnCours.Text)
-                            Invoke((MethodInvoker)(() => lb_CommandeEnCours.Text = "Commande numéro " + commandePrecedente + " terminée!"));
-                        commandePrecedente = lb_CommandeEnCours.Text.ToString();
-                    }
-                }
-                else
-                {
-
-                    LBX_Activities.Items.Add("Ingrédient numéro " + item1.ToString() + " non disponible");
-                    baseDeDonnees.SupprimerCommande(item1);
-                }
-            }
-            });
+            //Gate toi
         }
 
         private void Btn_ResetCommande_Click(object sender, EventArgs e)
@@ -216,10 +146,16 @@ namespace ServeurBarman
             }
         }
 
-
         private void pbx_Halt_Click(object sender, EventArgs e)
         {
             robot.Halt();
+            LB_Bras_Robot_Arreter.Visible = true;
+            if (LBX_WaitingList.Items.Count != 0)
+            {
+                btn_Servir.Enabled = true;
+                BTN_Pause_Commande.Enabled = false;
+            }
+
         }
 
         private void Btn_Connecter_Robot_Click(object sender, EventArgs e)
@@ -250,7 +186,7 @@ namespace ServeurBarman
         {
             estConnecté = true;
             pbx_Halt.Enabled = true;
-            btn_Servir.Enabled = true;
+            Update_Etat_Btn_Suppression();
             Btn_Connecter_Robot.Enabled = false;
             LB_Etat_Connection_Robot.Text = "Connecté";
             LB_Etat_Connection_Robot.ForeColor = Color.Green;
@@ -258,12 +194,9 @@ namespace ServeurBarman
 
         private void BTN_Pause_Commande_Click(object sender, EventArgs e)
         {
-            if (estConnecté)
-            {
-                btn_Servir.Enabled = false;
-                BTN_Pause_Commande.Enabled = true;
-                enService = false;
-            }
+            btn_Servir.Enabled = true;
+            BTN_Pause_Commande.Enabled = false;
+            enService = false;
         }
 
         private void BTN_Suprimé_Cmd_Click(object sender, EventArgs e)
@@ -272,20 +205,17 @@ namespace ServeurBarman
             {
                 int NumCommand = int.Parse(LBX_WaitingList.GetItemText(LBX_WaitingList.SelectedItem));
                 LBX_WaitingList.Items.RemoveAt(LBX_WaitingList.SelectedIndex);
-                Update_BTN_ListBox();
+
                 baseDeDonnees.Effacer_Commande_Choisi(NumCommand);
-            } 
+            }
         }
 
         private void btn_Servir_Click(object sender, EventArgs e)
         {
-            if (estConnecté)
-            {
-                btn_Servir.Enabled = true;
-                BTN_Pause_Commande.Enabled = false;
-                Etat_List_Attente();
-                ServirClient();
-            }
+            LB_Bras_Robot_Arreter.Visible = false;
+            BTN_Pause_Commande.Enabled = true;
+            btn_Servir.Enabled = false;
+            ServirClient();
         }
 
         private void BTN_Remplir_Verre_Shooter_Click(object sender, EventArgs e)
@@ -296,56 +226,56 @@ namespace ServeurBarman
 
         private void BTN_deconnexion_Click(object sender, EventArgs e)
         {
-          
             Close();
         }
 
         private void BTN_Connecter_BD_Click(object sender, EventArgs e)
         {
-            
             Connexion_BD();
         }
         public void Connexion_BD()
         {
             baseDeDonnees = DataBase.instance_bd;
-            baseDeDonnees.Connexion(TBX_Username.Text, TBX_Password.Text); // Ouvrir Connexion
-            if(baseDeDonnees.BdConnected)
-            Init_PageAcceuil();
+            baseDeDonnees.Connexion(TBX_Username.Text, TBX_Password.Text);
+            if (baseDeDonnees.BdConnected)
+            {
+                Init_PageAcceuil();
+                Btn_Connecter_Robot.Enabled = true;
+                BTN_Remplir_Verre_Shooter.Enabled = true;
+            }
+
+            TBX_Password.Enabled = false;
+            TBX_Username.Enabled = false;
         }
 
         private void LBX_WaitingList_SizeChanged(object sender, EventArgs e)
         {
-            if (LBX_WaitingList.Items.Count != 0)
-            {
-                BTN_Supprimer_Cmd.Enabled = true;
-                Btn_ResetCommande.Enabled = true;
-            }
-            else
-            {
-                BTN_Supprimer_Cmd.Enabled = false;
-                Btn_ResetCommande.Enabled = false;
-            }
+            Update_Etat_Btn_Suppression();
+
         }
 
-        private void Update_BTN_ListBox()
+
+        private void Update_Etat_Btn_Suppression()
         {
             if (LBX_WaitingList.Items.Count == 0)
             {
                 BTN_Supprimer_Cmd.Enabled = false;
                 Btn_ResetCommande.Enabled = false;
+                btn_Servir.Enabled = false;
+                BTN_Pause_Commande.Enabled = false;
+                enService = false;
             }
-            else
+            else if(estConnecté)
             {
                 Btn_ResetCommande.Enabled = true;
                 BTN_Supprimer_Cmd.Enabled = true;
+                btn_Servir.Enabled = true;
             }
         }
     }
     public class DataBase
     {
-        /// <summary>
-        /// Obtient l'état de la base de données
-        /// </summary>
+
         public OracleConnection BaseDonnées { get; private set; } = new OracleConnection();
         public bool BdConnected { get; private set; } = false;
         public static readonly DataBase instance_bd = new DataBase();
@@ -366,6 +296,7 @@ namespace ServeurBarman
             }
             catch (Exception) { MessageBox.Show("Erreur de connexion!!!"); }
             BdConnected = true;
+
         }
 
         public void FermerConnexion()
@@ -546,7 +477,7 @@ namespace ServeurBarman
             catch (Exception sel) { MessageBox.Show(sel.Message); }
         }
 
-       
+
         public void SupprimerCommande(int num)
         {
             try
@@ -563,13 +494,13 @@ namespace ServeurBarman
     public class Commande
     {
         private SpecificateurCommande commande;
-        private DataBase base2Donnees;
+
 
         public Commande()
         {
             //commande = new Commande_Normale();
             //robot = CRS_A255.Instance;
-            base2Donnees = DataBase.instance_bd;
+
         }
 
         public Commande(int num)
@@ -603,7 +534,7 @@ namespace ServeurBarman
 
         //}
 
-   
+
         public SpecificateurCommande TypeReel()
         {
             return commande.TypeReel();
@@ -622,7 +553,7 @@ namespace ServeurBarman
         protected DataBase Connexion { get; } = DataBase.instance_bd;
 
         public abstract List<(Position, int)> Ingredients(int numcom);
- 
+
         public abstract SpecificateurCommande TypeReel();
 
     }
