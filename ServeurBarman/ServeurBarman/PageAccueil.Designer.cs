@@ -38,7 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.PBX_Logo = new System.Windows.Forms.PictureBox();
             this.BTN_Setting = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LBL_Nb_Commande = new System.Windows.Forms.Label();
             this.LBX_WaitingList = new System.Windows.Forms.ListBox();
             this.Btn_ResetCommande = new System.Windows.Forms.Button();
             this.btn_Servir = new System.Windows.Forms.Button();
@@ -71,6 +71,8 @@
             this.pbx_Halt = new System.Windows.Forms.PictureBox();
             this.BTN_Connecter_BD = new System.Windows.Forms.Button();
             this.LB_Bras_Robot_Arreter = new System.Windows.Forms.Label();
+            this.LBL_Connection = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.PNL_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBX_Logo)).BeginInit();
             this.GBX_Etat_general.SuspendLayout();
@@ -154,10 +156,10 @@
             this.BTN_Setting.UseVisualStyleBackColor = true;
             this.BTN_Setting.Click += new System.EventHandler(this.BTN_Setting_Click);
             // 
-            // label1
+            // LBL_Nb_Commande
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.LBL_Nb_Commande, "LBL_Nb_Commande");
+            this.LBL_Nb_Commande.Name = "LBL_Nb_Commande";
             // 
             // LBX_WaitingList
             // 
@@ -168,9 +170,10 @@
             // 
             // Btn_ResetCommande
             // 
+            this.Btn_ResetCommande.BackColor = System.Drawing.Color.Gray;
             resources.ApplyResources(this.Btn_ResetCommande, "Btn_ResetCommande");
             this.Btn_ResetCommande.Name = "Btn_ResetCommande";
-            this.Btn_ResetCommande.UseVisualStyleBackColor = true;
+            this.Btn_ResetCommande.UseVisualStyleBackColor = false;
             this.Btn_ResetCommande.Click += new System.EventHandler(this.Btn_ResetCommande_Click);
             // 
             // btn_Servir
@@ -297,16 +300,19 @@
             // 
             resources.ApplyResources(this.LB_Nb_Verre_Shooter, "LB_Nb_Verre_Shooter");
             this.LB_Nb_Verre_Shooter.Name = "LB_Nb_Verre_Shooter";
+            this.LB_Nb_Verre_Shooter.TextChanged += new System.EventHandler(this.LB_Nb_Verre_Shooter_TextChanged);
             // 
             // LB_NB_VerreRouge
             // 
             resources.ApplyResources(this.LB_NB_VerreRouge, "LB_NB_VerreRouge");
             this.LB_NB_VerreRouge.Name = "LB_NB_VerreRouge";
+            this.LB_NB_VerreRouge.TextChanged += new System.EventHandler(this.LB_NB_VerreRouge_TextChanged);
             // 
             // LB_Nb_Bouteille
             // 
             resources.ApplyResources(this.LB_Nb_Bouteille, "LB_Nb_Bouteille");
             this.LB_Nb_Bouteille.Name = "LB_Nb_Bouteille";
+            this.LB_Nb_Bouteille.TextChanged += new System.EventHandler(this.LB_Nb_Bouteille_TextChanged);
             // 
             // LBL_Bouteille
             // 
@@ -349,9 +355,10 @@
             // 
             // BTN_Supprimer_Cmd
             // 
+            this.BTN_Supprimer_Cmd.BackColor = System.Drawing.Color.Gray;
             resources.ApplyResources(this.BTN_Supprimer_Cmd, "BTN_Supprimer_Cmd");
             this.BTN_Supprimer_Cmd.Name = "BTN_Supprimer_Cmd";
-            this.BTN_Supprimer_Cmd.UseVisualStyleBackColor = true;
+            this.BTN_Supprimer_Cmd.UseVisualStyleBackColor = false;
             this.BTN_Supprimer_Cmd.Click += new System.EventHandler(this.BTN_Suprimé_Cmd_Click);
             // 
             // BTN_Pause_Commande
@@ -392,12 +399,24 @@
             this.LB_Bras_Robot_Arreter.ForeColor = System.Drawing.Color.Red;
             this.LB_Bras_Robot_Arreter.Name = "LB_Bras_Robot_Arreter";
             // 
+            // LBL_Connection
+            // 
+            resources.ApplyResources(this.LBL_Connection, "LBL_Connection");
+            this.LBL_Connection.Name = "LBL_Connection";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
             // PageAccueil
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ControlBox = false;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LBL_Connection);
             this.Controls.Add(this.LB_Bras_Robot_Arreter);
             this.Controls.Add(this.BTN_Connecter_BD);
             this.Controls.Add(this.Btn_Connecter_Robot);
@@ -409,13 +428,14 @@
             this.Controls.Add(this.btn_Servir);
             this.Controls.Add(this.Btn_ResetCommande);
             this.Controls.Add(this.LBX_WaitingList);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LBL_Nb_Commande);
             this.Controls.Add(this.pbx_Halt);
             this.Controls.Add(this.PNL_Bordure_Top);
             this.DisplayHeader = false;
             this.Name = "PageAccueil";
             this.Resizable = false;
-            this.Style = MetroFramework.MetroColorStyle.Default;
+            this.Style = MetroFramework.MetroColorStyle.Black;
+            this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.Load += new System.EventHandler(this.PageAccueil_Load);
             this.PNL_Accueil.ResumeLayout(false);
             this.PNL_Accueil.PerformLayout();
@@ -440,7 +460,7 @@
         private System.Windows.Forms.PictureBox PBX_Logo;
         private System.Windows.Forms.Panel PNL_Accueil;
         private System.Windows.Forms.PictureBox pbx_Halt;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LBL_Nb_Commande;
         private System.Windows.Forms.ListBox LBX_WaitingList;
         private System.Windows.Forms.Button Btn_ResetCommande;
         private System.Windows.Forms.Button btn_Servir;
@@ -476,5 +496,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LB_Bras_Robot_Arreter;
+        private System.Windows.Forms.Label LBL_Connection;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -73,6 +73,16 @@ namespace ServeurBarman.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bwsd7v {
+            get {
+                object obj = ResourceManager.GetObject("bwsd7v", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap emergency {
             get {
                 object obj = ResourceManager.GetObject("emergency", resourceCulture);

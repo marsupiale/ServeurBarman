@@ -292,7 +292,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PNL_Accueil.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="TBX_Password.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -433,7 +433,7 @@
     <value>Stretch</value>
   </data>
   <data name="PBX_Logo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, -4</value>
+    <value>-11, -3</value>
   </data>
   <data name="PBX_Logo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -495,38 +495,38 @@
   <data name="&gt;&gt;BTN_Setting.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="LBL_Nb_Commande.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  <data name="LBL_Nb_Commande.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt, style=Bold, Underline</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>659, 82</value>
+  <data name="LBL_Nb_Commande.Location" type="System.Drawing.Point, System.Drawing">
+    <value>647, 86</value>
   </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="LBL_Nb_Commande.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 25</value>
+  <data name="LBL_Nb_Commande.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 25</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+  <data name="LBL_Nb_Commande.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Commandes en attente</value>
+  <data name="LBL_Nb_Commande.Text" xml:space="preserve">
+    <value>Commandes en attente :</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="&gt;&gt;LBL_Nb_Commande.Name" xml:space="preserve">
+    <value>LBL_Nb_Commande</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+  <data name="&gt;&gt;LBL_Nb_Commande.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LBL_Nb_Commande.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;LBL_Nb_Commande.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="LBX_WaitingList.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -535,7 +535,7 @@
     <value>25</value>
   </data>
   <data name="LBX_WaitingList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>619, 111</value>
+    <value>619, 125</value>
   </data>
   <data name="LBX_WaitingList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -559,13 +559,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;LBX_WaitingList.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="Btn_ResetCommande.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
   </data>
   <data name="Btn_ResetCommande.Location" type="System.Drawing.Point, System.Drawing">
-    <value>796, 374</value>
+    <value>796, 388</value>
   </data>
   <data name="Btn_ResetCommande.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -589,19 +589,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Btn_ResetCommande.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="btn_Servir.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="btn_Servir.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 255</value>
+    <value>257, 300</value>
   </data>
   <data name="btn_Servir.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="btn_Servir.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 65</value>
+    <value>143, 65</value>
   </data>
   <data name="btn_Servir.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -619,7 +619,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_Servir.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="LBL_InfoCommande.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -748,19 +748,19 @@
     <value>2</value>
   </data>
   <data name="metroLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>888, 50</value>
+    <value>817, 52</value>
   </data>
   <data name="metroLabel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="metroLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 30</value>
+    <value>247, 30</value>
   </data>
   <data name="metroLabel1.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
   </data>
   <data name="metroLabel1.Text" xml:space="preserve">
-    <value>Attention </value>
+    <value>Message du system</value>
   </data>
   <data name="metroLabel1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -1426,7 +1426,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GBX_infoGeneral.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1435,7 +1435,7 @@
     <value>Microsoft Sans Serif, 12pt, style=Bold, Underline</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1036, 98</value>
+    <value>1036, 86</value>
   </data>
   <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1459,7 +1459,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="PNL_Bordure_Top.Location" type="System.Drawing.Point, System.Drawing">
     <value>-1, -1</value>
@@ -1483,13 +1483,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PNL_Bordure_Top.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="BTN_Supprimer_Cmd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
   </data>
   <data name="BTN_Supprimer_Cmd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>619, 374</value>
+    <value>630, 388</value>
   </data>
   <data name="BTN_Supprimer_Cmd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1513,19 +1513,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BTN_Supprimer_Cmd.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="BTN_Pause_Commande.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="BTN_Pause_Commande.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 328</value>
+    <value>446, 300</value>
   </data>
   <data name="BTN_Pause_Commande.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="BTN_Pause_Commande.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 65</value>
+    <value>143, 65</value>
   </data>
   <data name="BTN_Pause_Commande.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -1543,19 +1543,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BTN_Pause_Commande.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="Btn_Connecter_Robot.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="Btn_Connecter_Robot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 182</value>
+    <value>446, 125</value>
   </data>
   <data name="Btn_Connecter_Robot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="Btn_Connecter_Robot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 65</value>
+    <value>138, 65</value>
   </data>
   <data name="Btn_Connecter_Robot.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -1573,7 +1573,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Btn_Connecter_Robot.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="pbx_Halt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1603,19 +1603,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbx_Halt.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="BTN_Connecter_BD.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="BTN_Connecter_BD.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 111</value>
+    <value>262, 126</value>
   </data>
   <data name="BTN_Connecter_BD.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="BTN_Connecter_BD.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 64</value>
+    <value>138, 64</value>
   </data>
   <data name="BTN_Connecter_BD.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
@@ -1633,7 +1633,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BTN_Connecter_BD.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="LB_Bras_Robot_Arreter.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1663,6 +1663,66 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;LB_Bras_Robot_Arreter.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LBL_Connection.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LBL_Connection.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt, style=Bold, Underline</value>
+  </data>
+  <data name="LBL_Connection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 82</value>
+  </data>
+  <data name="LBL_Connection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 29</value>
+  </data>
+  <data name="LBL_Connection.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="LBL_Connection.Text" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="&gt;&gt;LBL_Connection.Name" xml:space="preserve">
+    <value>LBL_Connection</value>
+  </data>
+  <data name="&gt;&gt;LBL_Connection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LBL_Connection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LBL_Connection.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13pt, style=Bold, Underline</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 256</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>346, 26</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Administration des commandes</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -7847,7 +7907,7 @@
 </value>
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Disable</value>
+    <value>HangulFull</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>

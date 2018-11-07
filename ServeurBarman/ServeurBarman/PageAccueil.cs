@@ -102,6 +102,7 @@ namespace ServeurBarman
                 Invoke((MethodInvoker)delegate
                 {
                     Update_Etat_Btn_Suppression();
+                    LBL_Nb_Commande.Text += LBX_WaitingList.Items.Count.ToString();
                 });
             }
 
@@ -135,6 +136,8 @@ namespace ServeurBarman
         private void ServirClient()
         {
             //Gate toi
+            //a la fin d'une commande on call les fonctions pour updater les info en bas, comme ca on verifie si il y des bouteilles vide
+            //ou manquante
         }
 
         private void Btn_ResetCommande_Click(object sender, EventArgs e)
@@ -254,6 +257,36 @@ namespace ServeurBarman
 
         }
 
+        private void LB_Nb_Bouteille_TextChanged(object sender, EventArgs e)
+        {
+            
+            if(int.Parse( baseDeDonnees.NombreIngredients()) == 0)
+            {
+                LBX_Activities.Items.Add("Aucune Bouteille Disponible");
+            }
+            else if(int.Parse(baseDeDonnees.NombreIngredients()) != 6)
+            {
+               List<string> IngredientManquant = baseDeDonnees.QuelIngredientNonDisponible();
+                foreach (var s in IngredientManquant)
+                    LBX_Activities.Items.Add(s + " n'est pas disponile");
+            }
+        }
+
+        private void LB_NB_VerreRouge_TextChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(baseDeDonnees.NombreDeVerreRouge()) == 0)
+            {
+                LBX_Activities.Items.Add("Aucun Verre Ordinaire Disponible");
+            }
+        }
+
+        private void LB_Nb_Verre_Shooter_TextChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(baseDeDonnees.NombreDeVerreRouge()) == 0)
+            {
+                LBX_Activities.Items.Add("Aucun Verre a shooter Disponible");
+            }
+        }
 
         private void Update_Etat_Btn_Suppression()
         {
@@ -265,11 +298,12 @@ namespace ServeurBarman
                 BTN_Pause_Commande.Enabled = false;
                 enService = false;
             }
-            else if(estConnecté)
+            else 
             {
                 Btn_ResetCommande.Enabled = true;
                 BTN_Supprimer_Cmd.Enabled = true;
-                btn_Servir.Enabled = true;
+                if (estConnecté)
+                    btn_Servir.Enabled = true;
             }
         }
     }
@@ -425,6 +459,25 @@ namespace ServeurBarman
 
             return nbreIngredients;
         }
+        public List<string> QuelIngredientNonDisponible()
+        {
+            List<string> nbreIngredients = new List<string>();
+            string cmd = "select NOMBOUTEILLE from ingredient where BOUTEILLEPRESENTE = 0";
+            OracleCommand listeDiv = new OracleCommand(cmd, BaseDonnées);
+            listeDiv.CommandType = CommandType.Text;
+            OracleDataReader divisionReader = listeDiv.ExecuteReader();
+            try
+            {
+                while (divisionReader.Read())
+                {
+                    nbreIngredients.Add(divisionReader.GetString(0));
+                }
+                divisionReader.Close();
+            }
+            catch (Exception sel) { MessageBox.Show(sel.Message.ToString()); }
+
+            return nbreIngredients;
+        }
         public void Effacer_Commande_Choisi(int nombre)
         {
             try
@@ -495,14 +548,6 @@ namespace ServeurBarman
     {
         private SpecificateurCommande commande;
 
-
-        public Commande()
-        {
-            //commande = new Commande_Normale();
-            //robot = CRS_A255.Instance;
-
-        }
-
         public Commande(int num)
         {
             if (num == 0)
@@ -511,28 +556,6 @@ namespace ServeurBarman
                 commande = new Shooter();
         }
 
-        //public void ServirClient(int item1, int item2)
-        //{
-
-        //        if (item2 == 0)
-        //        {
-        //            commande = new Commande_Normale();
-        //            var p = commande.TypeReel();
-        //            var ing = p.Ingredients(item1);
-
-        //            while (!robot.MakeDrink(ing.ToList())) ;
-        //        }
-        //        else
-        //        {
-        //            /*
-        //             * IL S'AGIT D'UN SHOOTER
-        //             */
-        //            commande = new Shooter();
-        //            var p = commande.TypeReel();
-        //            var ing = p.Ingredients(item1);
-        //        }
-
-        //}
 
 
         public SpecificateurCommande TypeReel()
